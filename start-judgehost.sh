@@ -1,3 +1,5 @@
+#!/bin/sh
+
 DOMSERVER_BASEURL=https://dj.chipcie.ch.tudelft.nl/
 JUDGEDAEMON_PASSWORD=jd_pass
 
