@@ -43,3 +43,16 @@ docker compose -f docker-compose-domserver.yml logs
 Add the `-f` flag to follow the logs live.
 
 The database can also be accessed through phpMyAdmin on port 8081.
+
+## Judgehost
+
+To run a Judgehost, use the `start-judgehost.sh` script.
+
+First update the `start-judgehost.sh` script to set the Judgehost password.
+This password can be found in the DOMjudge logs.
+
+Run the script with a number as the argument. The container will be limited to that cpu core, starting from 0. Example:
+
+```bash
+start-judgehost.sh 0
+```
