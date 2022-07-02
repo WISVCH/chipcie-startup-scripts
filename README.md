@@ -43,7 +43,7 @@ To run a Judgehost, use the `start-judgehost.sh` script.
 You can run multiple judgehosts on one machine, if desired.
 Make sure to leave enough resources for the machine itself.
 
-### ICPC tools CDS
+## ICPC tools CDS
 
 - Rename the cds directory to remove the `.example` extension:
 ```bash
