@@ -14,4 +14,4 @@ docker run \
 --name judgehost-$1 \
 --hostname judgedaemon-$1 \
 -e DAEMON_ID=$1 \
-ghcr.io/wisvch/domjudge-packaging/judgehost:8.1.0
+ghcr.io/wisvch/domjudge-packaging/judgehost:8.1.2
