@@ -23,10 +23,12 @@ if [ $? -eq 0 ]; then
     container="${values[3]}"
     version="${values[4]}"
 
+    ip=$(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+    hostname="judgedaemon-${ip//./_}"
+
 
    for (( c=0; c<$amount; c++ )); do
-      echo "amount:$amount base_url:$base_url password:$password container:$container version:$version"
-      env JUDGEDAEMON_PASSWORD=$password gnome-terminal -- ~/chipcie-startup-scripts/start-judgehost.sh --domserver-baseurl $base_url --container $container --version $version --no-detach $c
+      env JUDGEDAEMON_PASSWORD=$password gnome-terminal -- ~/chipcie-startup-scripts/start-judgehost.sh --domserver-baseurl "$base_url" --hostname "$hostname" --container "$container" --version "$version" --no-detach $c
    done
 
    gnome-terminal -- htop

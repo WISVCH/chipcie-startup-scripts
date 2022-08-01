@@ -5,6 +5,7 @@
 # ARG_TYPE_GROUP([nnint],[N],[cpu-core])
 # ARG_OPTIONAL_SINGLE([domserver-baseurl],[u],[Baseurl of the DOMserver],[https://dj.chipcie.ch.tudelft.nl/])
 # ARG_OPTIONAL_SINGLE([password],[p],[Password of the judgehosts in the domserver (leave empty for prompt)])
+# ARG_OPTIONAL_SINGLE([hostname],[n],[Hostname used to register on DOMserver],[judgedaemon])
 # ARG_OPTIONAL_SINGLE([container],[c],[Docker container to use as judgehost],[ghcr.io/wisvch/domjudge-packaging/judgehost])
 # ARG_OPTIONAL_SINGLE([version],[v],[Version of the container],[8.1.2])
 # ARG_OPTIONAL_BOOLEAN([detach],[d],[Run container in background and print container ID],[off])
@@ -34,7 +35,7 @@ nnint()
 
 begins_with_short_option()
 {
-	local first_option all_short_options='hupcvd'
+	local first_option all_short_options='hupncvd'
 	first_option="${1:0:1}"
 	test "$all_short_options" = "${all_short_options/$first_option/}" && return 1 || return 0
 }
@@ -44,6 +45,7 @@ _positionals=()
 # THE DEFAULTS INITIALIZATION - OPTIONALS
 _arg_domserver_baseurl="https://dj.chipcie.ch.tudelft.nl/"
 _arg_password=
+_arg_hostname="judgedaemon"
 _arg_container="ghcr.io/wisvch/domjudge-packaging/judgehost"
 _arg_version="8.1.2"
 _arg_detach="off"
@@ -52,11 +54,12 @@ _arg_detach="off"
 print_help()
 {
 	printf '%s\n' "Start a judgehost container on a certain core"
-	printf 'Usage: %s [-h|--help] [-u|--domserver-baseurl <arg>] [-p|--password <arg>] [-c|--container <arg>] [-v|--version <arg>] [-d|--(no-)detach] <cpu-core>\n' "$0"
+	printf 'Usage: %s [-h|--help] [-u|--domserver-baseurl <arg>] [-p|--password <arg>] [-n|--hostname <arg>] [-c|--container <arg>] [-v|--version <arg>] [-d|--(no-)detach] <cpu-core>\n' "$0"
 	printf '\t%s\n' "<cpu-core>: Which cpu core to run the judgehost container on"
 	printf '\t%s\n' "-h, --help: Prints help"
 	printf '\t%s\n' "-u, --domserver-baseurl: Baseurl of the DOMserver (default: 'https://dj.chipcie.ch.tudelft.nl/')"
 	printf '\t%s\n' "-p, --password: Password of the judgehosts in the domserver (leave empty for prompt) (no default)"
+	printf '\t%s\n' "-n, --hostname: Hostname used to register on DOMserver (default: 'judgedaemon')"
 	printf '\t%s\n' "-c, --container: Docker container to use as judgehost (default: 'ghcr.io/wisvch/domjudge-packaging/judgehost')"
 	printf '\t%s\n' "-v, --version: Version of the container (default: '8.1.2')"
 	printf '\t%s\n' "-d, --detach, --no-detach: Run container in background and print container ID (off by default)"
@@ -99,6 +102,17 @@ parse_commandline()
 				;;
 			-p*)
 				_arg_password="${_key##-p}"
+				;;
+			-n|--hostname)
+				test $# -lt 2 && die "Missing value for the optional argument '$_key'." 1
+				_arg_hostname="$2"
+				shift
+				;;
+			--hostname=*)
+				_arg_hostname="${_key##--hostname=}"
+				;;
+			-n*)
+				_arg_hostname="${_key##-n}"
 				;;
 			-c|--container)
 				test $# -lt 2 && die "Missing value for the optional argument '$_key'." 1
@@ -197,7 +211,7 @@ $( [ "$_arg_detach" = on ] && printf %s '-d' ) \
 -e DOMSERVER_BASEURL=$_arg_domserver_baseurl \
 -e JUDGEDAEMON_PASSWORD=$JUDGEDAEMON_PASSWORD \
 --name judgehost-$_arg_cpu_core \
---hostname judgedaemon-$_arg_cpu_core \
+--hostname "$_arg_hostname" \
 -e DAEMON_ID=$_arg_cpu_core \
 $_arg_container:$_arg_version
 
