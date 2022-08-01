@@ -34,11 +34,21 @@ The database can also be accessed through phpMyAdmin on port 8081.
 
 To run a Judgehost, use the `start-judgehost.sh` script.
 
-- Update the `start-judgehost.sh` script to set the Judgehost password. This password can be found in the DOMjudge logs.
 - Run the script with a number as the argument. The container will be limited to that cpu core, starting from 0. Example:
 ```bash
 ./start-judgehost.sh 0
 ```
+- See the help:
+  ```
+  Start a judgehost container on a certain core
+  Usage: ./start-judgehost.sh [-h|--help] [-u|--domserver-baseurl <arg>] [-p|--password <arg>] [-c|--container <arg>] [-v|--version <arg>] <cpu-core>
+  	<cpu-core>: Which cpu core to run the judgehost container on
+  	-h, --help: Prints help
+  	-u, --domserver-baseurl: Baseurl of the DOMserver (default: 'https://dj.chipcie.ch.tudelft.nl/')
+  	-p, --password: Password of the judgehosts in the domserver (leave empty for prompt) (no default)
+  	-c, --container: Docker container to use as judgehost (default: 'ghcr.io/wisvch/domjudge-packaging/judgehost')
+  	-v, --version: Version of the container (default: '8.1.2')
+  ```
 
 You can run multiple judgehosts on one machine, if desired.
 Make sure to leave enough resources for the machine itself.
