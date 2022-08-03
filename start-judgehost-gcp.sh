@@ -140,12 +140,72 @@ assign_positional_args 1 "${_positionals[@]}"
 
 #!/bin/bash
 
-git clone https://github.com/WISVCH/chipcie-startup-scripts.git
+### GCP command
+### wget https://raw.github.com/WISVCH/chipcie-startup-scripts/main/start-judgehost-gcp.sh -v -O start-judgehost-gcp.sh && chmod +x start-judgehost-gcp.sh && ./start-judgehost-gcp.sh password; rm -rf start-judgehost-gcp.sh
+
+apt update
+apt install -y \
+		vim \
+		wget \
+		curl \
+		git \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --batch --yes --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+apt update
+apt install -y \
+		docker-ce \
+		docker-ce-cli \
+		containerd.io \
+		docker-compose-plugin
+
+STR='GNU/Linux is an operating system'
+SUB='Linux'
+
+if ! [[ "$(cat /etc/default/grub | grep "GRUB_CMDLINE_LINUX_DEFAULT=")" =~ .*"cgroup_enable=memory".* ]]; then
+	sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& cgroup_enable=memory/' /etc/default/grub
+fi
+
+if ! [[ "$(cat /etc/default/grub | grep "GRUB_CMDLINE_LINUX_DEFAULT=")" =~ .*"swapaccount=1".* ]]; then
+	sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& swapaccount=1/' /etc/default/grub
+fi
+
+if ! [[ "$(cat /etc/default/grub | grep "GRUB_CMDLINE_LINUX_DEFAULT=")" =~ .*"systemd.unified_cgroup_hierarchy=0".* ]]; then
+	sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& systemd.unified_cgroup_hierarchy=0/' /etc/default/grub
+fi
+
+if ! [[ "$(cat /etc/default/grub | grep "GRUB_CMDLINE_LINUX=")" =~ .*"cgroup_enable=memory".* ]]; then
+	sed -i 's/GRUB_CMDLINE_LINUX="[^"]*/& cgroup_enable=memory/' /etc/default/grub
+fi
+
+if ! [[ "$(cat /etc/default/grub | grep "GRUB_CMDLINE_LINUX=")" =~ .*"swapaccount=1".* ]]; then
+	sed -i 's/GRUB_CMDLINE_LINUX="[^"]*/& swapaccount=1/' /etc/default/grub
+fi
+
+if ! [[ "$(cat /etc/default/grub | grep "GRUB_CMDLINE_LINUX=")" =~ .*"systemd.unified_cgroup_hierarchy=0".* ]]; then
+	sed -i 's/GRUB_CMDLINE_LINUX="[^"]*/& systemd.unified_cgroup_hierarchy=0/' /etc/default/grub
+fi
+
+if ! ([[ "$(cat /proc/cmdline)" =~ .*"cgroup_enable=memory".* ]] && [[ "$(cat /proc/cmdline)" =~ .*"cgroup_enable=memory".* ]] && [[ "$(cat /proc/cmdline)" =~ .*"systemd.unified_cgroup_hierarchy=0".* ]]); then
+	echo "restart required"
+	update-grub
+	reboot
+fi
+
+git clone https://github.com/WISVCH/chipcie-startup-scripts.git || (cd chipcie-startup-scripts; git pull; cd)
 
 cd chipcie-startup-scripts
 
-# hostname=
-# chipcie-startup-scripts/start-judgehost.sh --hostname $hostname --domserver-baseurl $_arg_domserver_baseurl --password $_arg_password --container $_arg_container --version $_arg_version
+hostname="gcp-$(hostname)"
+./start-judgehost.sh --hostname $hostname --domserver-baseurl $_arg_domserver_baseurl --password $_arg_password --container $_arg_container --version $_arg_version --detach 1
 
 
 # ] <-- needed because of Argbash
