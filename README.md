@@ -10,7 +10,7 @@ cp domserver.env.example domserver.env
 ```
 - Open `domserver.env` and update the `MYSQL_PASSWORD` to a strong password.
 - Optionally, Add a printer:
-  - Get a printer url via [linuxprint.tudelft.nl](https://linuxprint.tudelft.nl)
+  - Get a printer URL via [linuxprint.tudelft.nl](https://linuxprint.tudelft.nl)
     - Login using the CH account, Go to **Driver Print** > **Linux**.
     - Select **Advanced**, click **Continue** and select **Follow Me Employee** > **Follow Me**.
     - Scroll down to the url that looks similar to `ipps://linuxprint.tudelft.nl:443/ipp/r/abc/def`.
@@ -50,8 +50,32 @@ To run a Judgehost, use the `start-judgehost.sh` script.
   	-v, --version: Version of the container (default: '8.1.2')
   ```
 
-You can run multiple judgehosts on one machine, if desired.
+You can run multiple judgehosts on one machine if desired.
 Make sure to leave enough resources for the machine itself.
+
+### judgehost on ubuntu
+
+Use `start-judgehosts-gui.sh` to start multiple judgehosts on ubuntu.
+It will ask for the necessary information in a GUI and lock each judgehost to a different core.
+
+### judgehost in the google cloud
+
+To run the judgehosts in the cloud, start them using the following command:
+```bash
+gcloud compute instances create judgehost-1 --project=chipcie --zone=europe-west4-a --machine-type=e2-medium --metadata=judgehost_password=CHANGEME,startup-script=wget\ https://raw.github.com/WISVCH/chipcie-startup-scripts/main/start-judgehost-gcp.sh\ -v\ -O\ start-judgehost-gcp.sh\ \&\&\ chmod\ \+x\ start-judgehost-gcp.sh\ \&\&\ ./start-judgehost-gcp.sh\;\ rm\ -rf\ start-judgehost-gcp.sh --create-disk=auto-delete=yes,boot=yes,image=projects/ubuntu-os-cloud/global/images/ubuntu-minimal-2204-jammy-v20220712,size=10
+```
+
+You should change the `CHANGEME` to the judgehost password.
+This will use the `start-judgehost-gcp.sh` script to start a judgehost on a VM.
+It will install all the dependencies, and then reboot and start the judgehost.
+This takes a few minutes.
+
+Start multiple at the same time using:
+```bash
+gcloud compute instances create judgehost-1 judgehost-2 judgehost-3 judgehost-4 --project=chipcie --zone=europe-west4-a --machine-type=e2-medium --metadata=judgehost_password=CHANGEME,startup-script=wget\ https://raw.github.com/WISVCH/chipcie-startup-scripts/main/start-judgehost-gcp.sh\ -v\ -O\ start-judgehost-gcp.sh\ \&\&\ chmod\ \+x\ start-judgehost-gcp.sh\ \&\&\ ./start-judgehost-gcp.sh\;\ rm\ -rf\ start-judgehost-gcp.sh --create-disk=auto-delete=yes,boot=yes,image=projects/ubuntu-os-cloud/global/images/ubuntu-minimal-2204-jammy-v20220712,size=10
+```
+
+
 
 ## ICPC tools CDS
 
@@ -59,7 +83,7 @@ Make sure to leave enough resources for the machine itself.
 ```bash
 cp cds.example cds
 ```
-- Create an user in DOMjudge with the role `API reader` and `Source code reader`.
+- Create a user in DOMjudge with the role `API reader` and `Source code reader`.
 - Update these credentials in `cds/config/cdsConfig.xml`
 - Optionally, add another contest in this file for the test session.
 - **Update the credentials in `cds/confg/accounts.yaml`**
