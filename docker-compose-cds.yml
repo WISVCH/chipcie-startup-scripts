@@ -7,5 +7,8 @@ services:
       - "8083:8080"
       - "8443:8443"
     volumes:
-      - ${PWD}/cds/config:/opt/wlp/usr/servers/cds/config
+      - ${PWD}/cds/config_accounts.yaml:/opt/wlp/usr/servers/cds/config/accounts.yaml
+      - ${PWD}/cds/config_cdsConfig.xml:/opt/wlp/usr/servers/cds/config/cdsConfig.xml
+      - ${PWD}/cds/config_present_photos:/opt/wlp/usr/servers/cds/config/present/photos
+      - ${PWD}/cds/config_present_promo:/opt/wlp/usr/servers/cds/config/present/promo
       - ${PWD}/cds/contest:/contest
