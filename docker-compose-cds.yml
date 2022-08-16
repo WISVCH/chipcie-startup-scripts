@@ -2,7 +2,7 @@ version: "3"
 
 services:
   cds:
-    image: icpctools/cds:2.4.727
+    image: icpctools/cds:2.5.803
     ports:
       - "8083:8080"
       - "8443:8443"
