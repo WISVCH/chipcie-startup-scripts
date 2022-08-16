@@ -81,7 +81,7 @@ gcloud compute instances create judgehost-1 judgehost-2 judgehost-3 judgehost-4 
 
 - Rename the cds directory to remove the `.example` extension:
 ```bash
-cp cds.example cds
+cp -r cds.example cds
 ```
 - Create a user in DOMjudge with the role `API reader` and `Source code reader`.
 - Update these credentials in `cds/config/cdsConfig.xml`
