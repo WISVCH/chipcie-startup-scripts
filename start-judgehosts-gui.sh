@@ -13,7 +13,7 @@ values=( $(yad --form --center --width=600 --title="Start Judgehosts" --separato
 	--field="Container" \
 	    'ghcr.io/wisvch/domjudge-packaging/judgehost' \
 	--field="Version" \
-	    '8.1.2' \
+	    '8.1.3' \
 	    ) )
 
 if [ $? -eq 0 ]; then

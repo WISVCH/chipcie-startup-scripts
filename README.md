@@ -47,7 +47,7 @@ To run a Judgehost, use the `start-judgehost.sh` script.
   	-u, --domserver-baseurl: Baseurl of the DOMserver (default: 'https://dj.chipcie.ch.tudelft.nl/')
   	-p, --password: Password of the judgehosts in the domserver (leave empty for prompt) (no default)
   	-c, --container: Docker container to use as judgehost (default: 'ghcr.io/wisvch/domjudge-packaging/judgehost')
-  	-v, --version: Version of the container (default: '8.1.2')
+  	-v, --version: Version of the container (default: '8.1.3')
   ```
 
 You can run multiple judgehosts on one machine if desired.
