@@ -11,6 +11,11 @@ services:
         - domserver-spectator.env
     links:
       - "mariadb-spectator:mariadb"
+    deploy:
+        resources:
+            limits:
+                cpus: '2'
+                memory: 4G
 
   mariadb-spectator:
     image: mariadb:latest
