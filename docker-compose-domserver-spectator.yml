@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  domserver:
+    image: ghcr.io/wisvch/domjudge-packaging/domserver:8.1.3
+    ports:
+      - "8082:80"
+    depends_on:
+      - mariadb
+    env_file:
+        - domserver-spectator.env
+    links:
+      - "mariadb:mariadb"
+
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - "13307:3306"
+    env_file:
+        - domserver-spectator.env
+    command: --max-connections=1000
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+        - "8083:80"
+    depends_on:
+      - mariadb
+    env_file:
+        - domserver-spectator.env
+    links:
+      - "mariadb:db"

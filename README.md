@@ -75,8 +75,6 @@ Start multiple at the same time using:
 gcloud compute instances create judgehost-1 judgehost-2 judgehost-3 judgehost-4 --project=chipcie --zone=europe-west4-a --machine-type=e2-medium --metadata=judgehost_password=CHANGEME,startup-script=wget\ https://raw.github.com/WISVCH/chipcie-startup-scripts/main/start-judgehost-gcp.sh\ -v\ -O\ start-judgehost-gcp.sh\ \&\&\ chmod\ \+x\ start-judgehost-gcp.sh\ \&\&\ ./start-judgehost-gcp.sh\;\ rm\ -rf\ start-judgehost-gcp.sh --create-disk=auto-delete=yes,boot=yes,image=projects/ubuntu-os-cloud/global/images/ubuntu-minimal-2204-jammy-v20220712,size=10
 ```
 
-
-
 ## ICPC tools CDS
 
 - Rename the cds directory to remove the `.example` extension:
@@ -93,3 +91,18 @@ docker compose -f docker-compose-cds.yml up -d
 ```
 
 Photos or promo material can be added in the `cds/config_present_photos` and `cds/config_present_promo` directories.
+
+## Port bindings
+
+The folowing ports are used by the containers:
+
+| Service | Port |
+|---|---|
+| domserver  | 8080 |
+| mariadb | 13306 |
+| phpmyadmin | 8081 |
+| domserver spectator | 8082 |
+| mariadb spectator | 13307 |
+| phpmyadmin spectator | 8083 |
+| csd http | 8084 |
+| csd https | 8443 |
