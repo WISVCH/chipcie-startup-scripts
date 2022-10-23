@@ -1,5 +1,0 @@
-<cds>
-  <contest location="/contest" recordReactions="false">
-    <ccs url="https://dj.chipcie.ch.tudelft.nl/api/contests/2" user="domjudge_user" password="domjudge_password"/>
-  </contest>
-</cds>
