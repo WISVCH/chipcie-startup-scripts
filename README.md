@@ -106,3 +106,4 @@ The folowing ports are used by the containers:
 | phpmyadmin spectator | 8083 |
 | csd http | 8084 |
 | csd https | 8443 |
+| icinga http | 8085 |

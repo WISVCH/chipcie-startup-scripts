@@ -47,8 +47,7 @@ services:
       # - ./msmtp/msmtprc:/etc/msmtprc:ro
       # - ./msmtp/aliases:/etc/aliases:ro
     ports:
-      - "80:80"
-      - "443:443"
+      - "8085:80"
       - "5665:5665"
   graphite:
     image: graphiteapp/graphite-statsd:latest
