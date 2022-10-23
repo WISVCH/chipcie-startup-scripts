@@ -17,14 +17,14 @@ cp domserver.env.example domserver.env
   - Copy this and update `PRINTER_URL`
 - Start domserver
 ```bash
-docker compose -f docker-compose-domserver.yml up -d
+docker compose up -d
 ```
 
 DOMjudge is now running on port 8080.
 The default password for the `admin` user is in the logs.
 These can be accessed using:
 ```bash
-docker compose -f docker-compose-domserver.yml logs
+docker compose logs
 ```
 Add the `-f` flag to follow the logs live.
 
@@ -87,7 +87,7 @@ cp -r cds.example cds
 - **Update the credentials in `cds/config_accounts.yaml`**
 - Start the CDS using:
 ```bash
-docker compose -f docker-compose-cds.yml up -d
+docker compose up -d
 ```
 
 Photos or promo material can be added in the `cds/config_present_photos` and `cds/config_present_promo` directories.
