@@ -28,7 +28,7 @@ if [ $? -eq 0 ]; then
 
 
    for (( c=0; c<$amount; c++ )); do
-      env JUDGEDAEMON_PASSWORD=$password gnome-terminal -- ~/chipcie-startup-scripts/start-judgehost.sh --domserver-baseurl "$base_url" --hostname "$hostname" --container "$container" --version "$version" --no-detach $c
+	   env JUDGEDAEMON_PASSWORD=$password gnome-terminal -- ~/chipcie-startup-scripts/start-judgehost.sh --domserver-baseurl "$base_url" --hostname "$hostname" --container "$container" --version "$version" --no-detach $((($c + 1) % $cores))
    done
 
    gnome-terminal -- htop
