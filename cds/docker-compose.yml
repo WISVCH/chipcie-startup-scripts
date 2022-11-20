@@ -2,13 +2,12 @@ version: "3"
 
 services:
   cds:
-    image: icpctools/cds:2.5.803
+    image: icpctools/cds:2.5.864
     ports:
       - "8084:8080"
       - "8443:8443"
     volumes:
-      - ${PWD}/cds/config_accounts.yaml:/opt/wlp/usr/servers/cds/config/accounts.yaml
-      - ${PWD}/cds/config_cdsConfig.xml:/opt/wlp/usr/servers/cds/config/cdsConfig.xml
-      - ${PWD}/cds/config_present_photos:/opt/wlp/usr/servers/cds/config/present/photos
-      - ${PWD}/cds/config_present_promo:/opt/wlp/usr/servers/cds/config/present/promo
-      - ${PWD}/cds/contest:/contest
+      - ${PWD}/cds/contest_main:/contest_main
+      - ${PWD}/cds/contest_spec:/contest_spec
+      - ${PWD}/cds/contest_test:/contest_test
+      - ${PWD}/cds/config:/opt/wlp/usr/servers/cds/config

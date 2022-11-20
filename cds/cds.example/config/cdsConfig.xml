@@ -1,0 +1,12 @@
+<cds>
+	<contest location="/contest_main" recordReactions="false">
+		<ccs url="https://dj.chipcie.ch.tudelft.nl/api/contests/x" user="cds" password="domjudge_password"/>
+	</contest>
+	<contest location="/contest_spec" recordReactions="false">
+		<ccs url="https://spectator.chipcie.ch.tudelft.nl/api/contests/x" user="cds" password="domjudge_password"/>
+	</contest>
+	<contest location="/contest_test" recordReactions="false">
+		<ccs url="https://dj.chipcie.ch.tudelft.nl/api/contests/x" user="cds" password="domjudge_password"/>
+	</contest>
+</cds>
+
