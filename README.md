@@ -82,15 +82,17 @@ gcloud compute instances create judgehost-1 judgehost-2 judgehost-3 judgehost-4 
 cp -r cds.example cds
 ```
 - Create a user in DOMjudge with the role `API reader` and `Source code reader`.
-- Update these credentials in `cds/config_cdsConfig.xml`
+- Update these credentials in `cds/config/cdsConfig.xml`
 - Optionally, add another contest in this file for the test session.
-- **Update the credentials in `cds/config_accounts.yaml`**
+- **Update the credentials in `cds/config/accounts.yaml`**
 - Start the CDS using:
 ```bash
 docker compose up -d
 ```
 
-Photos or promo material can be added in the `cds/config_present_photos` and `cds/config_present_promo` directories.
+- Photos or promo material can be added in the `cds/config/present/photos` and `cds/config/present/promo` directories.
+- Affiliantion logos can be put in the `cds/contest*/organizations` directories, which you can automatically do with the `download_affiliations_with_background.sh` script in `cds`.
+- A logo and a banner can be put in `cds/contest*/contest/logo.png` and  `cds/contest*/contest/banner.png`.
 
 ## Port bindings
 
