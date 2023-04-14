@@ -7,7 +7,7 @@
 # ARG_OPTIONAL_SINGLE([password],[p],[Password of the judgehosts in the domserver (leave empty for prompt)])
 # ARG_OPTIONAL_SINGLE([hostname],[n],[Hostname used to register on DOMserver],[judgedaemon])
 # ARG_OPTIONAL_SINGLE([container],[c],[Docker container to use as judgehost],[ghcr.io/wisvch/domjudge-packaging/judgehost])
-# ARG_OPTIONAL_SINGLE([version],[v],[Version of the container],[8.1.3])
+# ARG_OPTIONAL_SINGLE([version],[v],[Version of the container],[8.2.0])
 # ARG_OPTIONAL_BOOLEAN([detach],[d],[Run container in background and print container ID],[off])
 # ARGBASH_GO()
 # needed because of Argbash --> m4_ignore([
@@ -47,7 +47,7 @@ _arg_domserver_baseurl="https://dj.chipcie.ch.tudelft.nl/"
 _arg_password=
 _arg_hostname="judgedaemon"
 _arg_container="ghcr.io/wisvch/domjudge-packaging/judgehost"
-_arg_version="8.1.3"
+_arg_version="8.2.0"
 _arg_detach="off"
 
 
@@ -61,7 +61,7 @@ print_help()
 	printf '\t%s\n' "-p, --password: Password of the judgehosts in the domserver (leave empty for prompt) (no default)"
 	printf '\t%s\n' "-n, --hostname: Hostname used to register on DOMserver (default: 'judgedaemon')"
 	printf '\t%s\n' "-c, --container: Docker container to use as judgehost (default: 'ghcr.io/wisvch/domjudge-packaging/judgehost')"
-	printf '\t%s\n' "-v, --version: Version of the container (default: '8.1.3')"
+	printf '\t%s\n' "-v, --version: Version of the container (default: '8.2.0')"
 	printf '\t%s\n' "-d, --detach, --no-detach: Run container in background and print container ID (off by default)"
 }
 
@@ -206,7 +206,6 @@ docker run \
 --rm \
 $( [ "$_arg_detach" = on ] && printf %s '-d' ) \
 --privileged \
---cpuset-cpus="$_arg_cpu_core" \
 -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 -e DOMSERVER_BASEURL=$_arg_domserver_baseurl \
 -e JUDGEDAEMON_PASSWORD=$JUDGEDAEMON_PASSWORD \
