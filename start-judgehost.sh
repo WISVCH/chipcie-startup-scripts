@@ -47,7 +47,7 @@ _arg_domserver_baseurl="https://dj.chipcie.ch.tudelft.nl/"
 _arg_password=
 _arg_hostname="judgedaemon"
 _arg_container="ghcr.io/wisvch/domjudge-packaging/judgehost"
-_arg_version="8.2.0"
+_arg_version="8.2.1"
 _arg_detach="off"
 
 
