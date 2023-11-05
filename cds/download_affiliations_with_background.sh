@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_arg_git_repository="robertdijk/icpc-logos"
+_arg_git_repository="WISVCH/icpc-logos"
 _arg_size=256
 
 tmp_dir=$(mktemp -d -t affiliations-XXXXXXXXXX)
