@@ -19,6 +19,8 @@ services:
     env_file:
         - domserver.env
     command: --max-connections=1000
+    volumes:
+      - ${PWD}/mariadb:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
