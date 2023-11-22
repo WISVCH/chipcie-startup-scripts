@@ -2,7 +2,7 @@ version: "3"
 
 services:
   domserver-spectator:
-    image: ghcr.io/wisvch/domjudge-packaging/domserver:main
+    image: ghcr.io/wisvch/domjudge-packaging/domserver:nwerc2023
     ports:
       - "8082:80"
     depends_on:
