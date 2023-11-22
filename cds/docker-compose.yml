@@ -2,7 +2,7 @@ version: "3"
 
 services:
   cds:
-    image: ghcr.io/icpctools/cds:2.5.974
+    image: ghcr.io/icpctools/cds:2.5.940
     ports:
       - "8084:8080"
       - "8443:8443"
