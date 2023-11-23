@@ -24,6 +24,8 @@ services:
     env_file:
         - domserver-spectator.env
     command: --max-connections=1000
+    volumes:
+      - ${PWD}/mysql:/var/lib/mysql
 
   phpmyadmin-spectator:
     image: phpmyadmin/phpmyadmin
