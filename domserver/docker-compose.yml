@@ -2,7 +2,7 @@ version: "3"
 
 services:
   domserver:
-    image: ghcr.io/wisvch/domjudge-packaging/domserver:nwerc2023
+    image: ghcr.io/wisvch/domjudge-packaging/domserver:latest
     ports:
       - "8080:80"
     depends_on:
