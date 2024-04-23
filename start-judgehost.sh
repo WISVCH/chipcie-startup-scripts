@@ -206,7 +206,7 @@ docker run \
 --rm \
 $( [ "$_arg_detach" = on ] && printf %s '-d' ) \
 --privileged \
--v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+-v /sys/fs/cgroup:/sys/fs/cgroup \
 -e DOMSERVER_BASEURL=$_arg_domserver_baseurl \
 -e JUDGEDAEMON_PASSWORD=$JUDGEDAEMON_PASSWORD \
 --name judgehost-$_arg_cpu_core \
