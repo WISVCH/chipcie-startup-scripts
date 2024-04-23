@@ -211,6 +211,7 @@ $( [ "$_arg_detach" = on ] && printf %s '-d' ) \
 -e JUDGEDAEMON_PASSWORD=$JUDGEDAEMON_PASSWORD \
 --name judgehost-$_arg_cpu_core \
 --hostname "$_arg_hostname" \
+# --add-host dj.chipcie.ch.tudelft.nl:34.141.175.184 \
 -e DAEMON_ID=$_arg_cpu_core \
 $_arg_container:$_arg_version
 
