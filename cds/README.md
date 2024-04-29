@@ -6,7 +6,7 @@ This directory contains the files to start the Contest Data Server. The CDS need
 
 Let's go over how to set up the CDS
 
-1. In DOMjudge, create a CDS user with 
+1. In DOMjudge, create a CDS user with `API reader` and `Source code reader` roles
 2. Remove the existing `cds` folder if it exists. It contains a lot of data from the previous contest that is not needed anymore
 3. Copy `cds.example` to `cds` to have a fresh start
 4. In `cds/config`, edit the `cdsConfig.xml` file to contain the correct contests, with the respective DOMjudge API endpoints and credentials
@@ -20,3 +20,4 @@ Some additional configuration is possible depending on the circumstances:
 
 - A contest logo and banner can be added by creating `logo.png` and `banner.png` in `cds/contest_{CONTEST}/contest`
 - Team pictures can be added by creating `photo.jpg|png|...` in `cds/contest_{CONTEST}/teams/{TEAMID}`
+- Photos or promo material can be added in the `cds/config/present/photos` and `cds/config/present/promo` directories
