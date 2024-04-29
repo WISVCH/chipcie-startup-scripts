@@ -5,7 +5,6 @@ services:
 #     build:
 #       context: ./
 #       dockerfile: Dockerfile
-    restart: on-failure:5
     # Set your hostname to the FQDN under which your
     # sattelites will reach this container
     hostname: icinga2
@@ -52,7 +51,6 @@ services:
   graphite:
     image: graphiteapp/graphite-statsd:latest
     container_name: graphite
-    restart: on-failure:5
     hostname: graphite
     volumes:
       - ./data/graphite/conf:/opt/graphite/conf
