@@ -47,7 +47,7 @@ _arg_domserver_baseurl="https://dj.chipcie.ch.tudelft.nl/"
 _arg_password=
 _arg_hostname="judgedaemon"
 _arg_container="ghcr.io/wisvch/domjudge-packaging/judgehost"
-_arg_version="8.2.3"
+_arg_version="8.3"
 _arg_detach="off"
 
 
@@ -61,7 +61,7 @@ print_help()
 	printf '\t%s\n' "-p, --password: Password of the judgehosts in the domserver (leave empty for prompt) (no default)"
 	printf '\t%s\n' "-n, --hostname: Hostname used to register on DOMserver (default: 'judgedaemon')"
 	printf '\t%s\n' "-c, --container: Docker container to use as judgehost (default: 'ghcr.io/wisvch/domjudge-packaging/judgehost')"
-	printf '\t%s\n' "-v, --version: Version of the container (default: '8.2.0')"
+	printf '\t%s\n' "-v, --version: Version of the container (default: '8.3')"
 	printf '\t%s\n' "-d, --detach, --no-detach: Run container in background and print container ID (off by default)"
 }
 
