@@ -21,7 +21,7 @@ for f in $tmp_dir/background_$_arg_size/*; do
     cp $f $tmp_dir/organizations/$name/logo${_arg_size}x${_arg_size}.png
 done
 
-for c in cds/contest_*; do
+for c in data/contest_*; do
     rsync -a $tmp_dir/organizations/ $c/organizations
 done
 

@@ -8,7 +8,7 @@ services:
       - "8084:8080"
       - "8443:8443"
     volumes:
-      - ${PWD}/cds/contest_main:/contest_main
-      - ${PWD}/cds/contest_spec:/contest_spec
-      - ${PWD}/cds/contest_test:/contest_test
-      - ${PWD}/cds/config:/opt/wlp/usr/servers/cds/config
+      - ${PWD}/data/contest_main:/contest_main
+      - ${PWD}/data/contest_spec:/contest_spec
+      - ${PWD}/data/contest_test:/contest_test
+      - ${PWD}/data/config:/opt/wlp/usr/servers/cds/config

@@ -6,7 +6,7 @@ generate_random_password() {
 }
 
 # Your YAML file path
-yaml_file="cds/config/accounts.yaml"
+yaml_file="data/config/accounts.yaml"
 
 # Loop through each line in the file
 while IFS= read -r line; do
