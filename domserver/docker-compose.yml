@@ -2,7 +2,7 @@ version: "3"
 
 services:
   domserver:
-    image: ghcr.io/wisvch/domjudge-packaging/domserver:8.3
+    image: ghcr.io/wisvch/domjudge-packaging/domserver:nwerc2024
     ports:
       - "8080:80"
     depends_on:
@@ -18,7 +18,7 @@ services:
       - "13306:3306"
     env_file:
         - domserver.env
-    command: --max-connections=1000
+    command: --max-connections=1000 --max-allowed-packet=1G
     volumes:
       - ${PWD}/mysql:/var/lib/mysql
 
